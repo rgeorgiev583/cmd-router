@@ -1,5 +1,5 @@
 CFLAGS = -g
-NAME = cmd-router
+TARGET_DIR = /usr/local/bin
 
 .PHONY: all clean
 
@@ -15,7 +15,13 @@ cmd-router: router.o ini.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 install:
-	install -D -m755 cmd-router /usr/local/bin/$(NAME)
+	install -D -m755 cmd-router $(TARGET_DIR)/cmd-router
+
+command:
+	ln -fs $(TARGET_DIR)/cmd-router $(TARGET_DIR)/$(NAME)
+
+remove:
+	rm -f $(TARGET_DIR)/cmd-router
 
 clean:
 	rm -f cmd-router router.o ini.o

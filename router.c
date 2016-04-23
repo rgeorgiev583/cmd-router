@@ -40,7 +40,7 @@ int handle_conf(void* user, const char* section, const char* name, const char* v
     return 1;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     char* args[ARG_SIZE];
     args[0] = basename(argv[0]);

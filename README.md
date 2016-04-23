@@ -1,16 +1,16 @@
-# cmd-router
+# cmdproxy
 
-*cmd-router* is a simple program which looks at its executable name and first argument and decides which actual command (with its subcommand determined by the first argument) to invoke based on a simple INI-based configuration file.
+*cmdproxy* is a simple program which looks at its executable name and first argument and decides which actual command (with its subcommand determined by the first argument) to invoke based on a simple INI-based configuration file.
 
 ## Limitations
 * For the moment, it works only on Unix-like (i.e. POSIX-compliant) operating systems (library functions `strdup`, `basename` and `execve` have to be implemented).
 * You must always provide a subcommand (i.e. the program won't work with whole commands).
-* The configuration file's location is hardcoded to be at `/etc/cmd-router.conf`.
+* The configuration file's location is hardcoded to be at `/etc/cmdproxy.conf`.
 * No proper error handling.
 
 ## Configuration file format
 
-	[cmd-router]
+	[cmdproxy]
     ALIAS = COMMAND
     ...
 
@@ -18,7 +18,7 @@
     SUBCOMMAND_ALIAS = SUBCOMMAND
     ...
 
-Here the `cmd-router` section contains the `ALIAS`es for each `COMMAND`, where each `ALIAS` is the name of the executable with which `cmd-router` was started, and `COMMAND` is the actual command that should be executed for the given `ALIAS`.
+Here the `cmdproxy` section contains the `ALIAS`es for each `COMMAND`, where each `ALIAS` is the name of the executable with which `cmdproxy` was started, and `COMMAND` is the actual command that should be executed for the given `ALIAS`.
 
 `SUBCOMMAND_ALIAS` is the name of the alias of the `SUBCOMMAND` (i.e. the first argument passed when `ALIAS` is invoked).
 
@@ -26,9 +26,9 @@ Here the `cmd-router` section contains the `ALIAS`es for each `COMMAND`, where e
 
 	$ ALIAS SUBCOMMAND_ALIAS args...
 
-Example `/etc/cmd-router.conf`:
+Example `/etc/cmdproxy.conf`:
 
-    [cmd-router]
+    [cmdproxy]
     pm = bb-wrapper
 
     [pm]

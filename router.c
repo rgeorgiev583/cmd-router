@@ -19,7 +19,7 @@ int handle_conf(void* user, const char* section, const char* name, const char* v
 {
     state_t* state = user;
 
-    if (!strcmp(section, "cmd-router") && !strcmp(name, state->args[0]))
+    if (!strcmp(section, "cmdproxy") && !strcmp(name, state->args[0]))
         state->name = strdup(value);
     else if (!strcmp(section, state->args[0]) && !strcmp(name, state->args[1]))
     {
@@ -54,7 +54,7 @@ int main(int argc, char** argv)
         .argv = argv
     };
 
-    ini_parse("/etc/cmd-router.conf", handle_conf, &state);
+    ini_parse("/etc/cmdproxy.conf", handle_conf, &state);
 
     if (argv[0] != args[0])
         free(args[0]);

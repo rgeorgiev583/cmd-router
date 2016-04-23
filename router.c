@@ -7,7 +7,6 @@
 
 #include "ini.h"
 
-#define HT_SIZE 1000
 #define ARG_SIZE 1000
 
 typedef struct state_t {
